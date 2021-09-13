@@ -26,6 +26,7 @@ pipeline {
              withDockerRegistry([ credentialsId: "docker-creds", url: "" ]) {
              bat "docker push abhishekkvvishnoi/my-app-image:latest"
         }
+       }
 
        stage("kubernetes-deplyment"){
 
