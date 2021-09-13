@@ -1,5 +1,11 @@
 pipeline {
 
+    environment {
+            registry = "abhishekkvvishnoi/my-app-image"
+            registryCredential = 'docker-creds'
+            dockerImage = ''
+        }
+
     agent any
 
     stages{
@@ -13,22 +19,21 @@ pipeline {
         }
 
         stage("docker-image-build"){
-
-          steps{
-           echo "building docker images for your new code...!!!!"
-           sh "docker build -t abhishekkvvishnoi/my-app-image:latest ."
-          }
+            steps {
+               script {
+                   dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                        }
+                   }
         }
 
 
        stage('docker-image-push') {
-
-        steps{
-             echo "deploying an aplication.."
-             withDockerRegistry([ credentialsId: "docker-creds", url: "" ]) {
-             bat "docker push abhishekkvvishnoi/my-app-image:latest"
-             }
-        }
+            steps {
+                 script {
+                   docker.withRegistry( '', registryCredential ) {
+                       dockerImage.push()
+                         }
+                   }
        }
 
        stage("kubernetes-deplyment"){
