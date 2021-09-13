@@ -34,7 +34,7 @@ pipeline {
 
            steps{
              echo "deploying an aplication.."
-             sh "docker push abhishekkvvishnoi/my-app-image:latest"
+             sh "kubectl apply -f my.yaml"
             }
 
        }
