@@ -34,7 +34,8 @@ pipeline {
                        dockerImage.push()
                          }
                    }
-       }
+              }
+        }
 
        stage("kubernetes-deplyment"){
 
