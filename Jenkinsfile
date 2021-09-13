@@ -4,32 +4,40 @@ pipeline {
 
     stages{
 
-        stage("build"){
+        stage("maven-build"){
 
           steps{
-            echo "building an aplication.."
+            echo "running maven build of your code ..!!"
             sh "mvn clean install -DskipTests"
           }
-
         }
 
-           stage("test"){
+        stage("docker-image-build"){
 
           steps{
-           echo "testing an aplication.."
+           echo "building docker images for your new code...!!!!"
+           sh "docker build -t abhishekkvvishnoi/myAppImage:latest ."
           }
-
         }
 
 
-
-       stage("deploy"){
+       stage("docker-image-push"){
 
           steps{
            echo "deploying an aplication.."
+           sh "docker push abhishekkvvishnoi/my-app-image:latest"
           }
 
         }
+
+       stage("kubernetes-deplyment"){
+
+           steps{
+             echo "deploying an aplication.."
+             sh "docker push abhishekkvvishnoi/my-app-image:latest"
+            }
+
+       }
 
 
 
