@@ -21,14 +21,12 @@ pipeline {
         }
 
 
-       stage("docker-image-push"){
-
-          steps{
-           echo "deploying an aplication.."
-           sh "docker push abhishekkvvishnoi/my-app-image:latest"
-          }
-
+       stage('docker-image-push') {
+             echo "deploying an aplication.."
+             withDockerRegistry([ credentialsId: "docker-creds", url: "" ]) {
+             bat "docker push devopsglobalmedia/teamcitydocker:build"
         }
+
 
        stage("kubernetes-deplyment"){
 
