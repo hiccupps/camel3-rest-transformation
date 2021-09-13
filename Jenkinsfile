@@ -16,7 +16,7 @@ pipeline {
 
           steps{
            echo "building docker images for your new code...!!!!"
-           sh "docker build -t abhishekkvvishnoi/myAppImage:latest ."
+           sh "docker build -t abhishekkvvishnoi/my-app-image:latest ."
           }
         }
 
