@@ -40,8 +40,10 @@ pipeline {
        stage("docker-image-run"){
 
           steps{
+          script {
             echo "deploying the application on docker.."
             dockerImage.run( '-p 8080:8080' )
+          }
           }
 
       }
