@@ -41,7 +41,7 @@ pipeline {
 
           steps{
             echo "deploying the application on docker.."
-            Image.run( -p 8080:8080)
+            Image.run( '-p 8080:8080' )
           }
 
       }
