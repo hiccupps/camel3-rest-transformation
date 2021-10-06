@@ -52,7 +52,7 @@ public class AirlineRoute extends RouteBuilder {
                 .get("/getAirlineToCity?destCity={destCity}")
                     .to("direct:getAirlineToCity");
 
-        from("direct:baseURI").setBody(simple("Hello World!!"));
+        from("direct:baseURI").setBody(simple("Hello Arushi!!"));
 
         from("direct:getAirlinesFromCity")
                 .to("bean:airlineSearchBean?method=getAllFlightsFromCity(${header.srcCity})")
