@@ -40,8 +40,8 @@ pipeline {
        stage("kubernetes-deplyment"){
 
            steps{
-             echo "deploying an aplication.."
-             sh "kubectl apply -f my.yaml"
+           //  echo "deploying an aplication.."
+           //  sh "kubectl apply -f my.yaml"
             }
 
        }
