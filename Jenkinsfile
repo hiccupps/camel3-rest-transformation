@@ -37,14 +37,14 @@ pipeline {
               }
         }
 
-       //stage("kubernetes-deplyment"){
+       stage("docker-image-run"){
 
-          // steps{
-           //  echo "deploying an aplication.."
-           //  sh "kubectl apply -f my.yaml"
-         //  }
+          steps{
+            echo "deploying the application on docker.."
+            Image.run( -p 8080:8080)
+          }
 
-      // }
+      }
 
 
 
